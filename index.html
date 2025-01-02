@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=UnifrakturMaguntia&display=swap"
+    rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bellefair&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: lavoza;
+      src: url(./LavozaRegular-ZVYD3.ttf);
+    }
+
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: "Old Standard TT", serif;
+    }
+
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      background-color: #c2b491;
+      color: black;
+    }
+    #blurred {
+      backdrop-filter: blur(10px); /* Applying blur */
+      background-color: #b9a06028; /* Darken the background a bit */
+    }
+    .nav-link {
+      position: relative;
+      display: inline-block;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #2f2f2f;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: #2f2f2f;
+      /* Tailwind sky-500 */
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .nav-link:hover {
+      color: #2f2f2f;
+      /* Tailwind sky-500 */
+    }
+
+    /* Fade-in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Project gallery hover effect */
+    #project-card {
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    #project-card:hover {
+      background-color: #c1a65da8;
+      transform: translateY(-10px);
+    }
+
+    #page5 {
+      padding: 1rem 0;
+      width: 100%;
+      border-top: 0.1rem solid #2f2f2f;
+      border-bottom: 0.1rem solid #2f2f2f;
+      white-space: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      h1 {
+        font-family: lavoza;
+        font-size: 3rem;
+        font-weight: 100;
+        display: inline-block;
+        animation-timing-function: linear;
+        margin-right: 2rem;
+        animation-name: scroll;
+        animation-duration: 3s;
+        animation-iteration-count: infinite;
+      }
+    }
+
+    #page5::-webkit-scrollbar {
+      display: none;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(calc(-100% - 34px));
+      }
+    }
+
+    #page5:hover h1 {
+      animation-play-state: paused;
+    }
+
+    #main {
+      height: 100%;
+      width: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 25rem;
+        height: 35rem;
+        position: relative;
+        z-index: 99;
+        object-fit: cover;
+      }
+
+      #scroll-div {
+        position: absolute;
+        top: 24%;
+        width: 100%;
+        white-space: nowrap;
+        /* saare children ek hi line me */
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        h1 {
+          display: inline-block;
+          font-size: 7rem;
+
+          margin-right: 2rem;
+          letter-spacing: 0.2rem;
+          animation-name: scroll;
+          animation-duration: 5s;
+          animation-timing-function: linear;
+          animation-iteration-count: infinite;
+        }
+      }
+    }
+
+    #scroll-div::-webkit-scrollbar {
+      display: none;
+    }
+
+    #scroll-div2 {
+      position: absolute;
+      z-index: 100;
+      top: 44%;
+      width: 100%;
+      white-space: nowrap;
+      /* saare children ek hi line me */
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      h1 {
+        color: transparent;
+        display: inline-block;
+        font-size: 7rem;
+
+        margin-right: 2rem;
+        letter-spacing: 0.2rem;
+        -webkit-text-stroke: 0.15rem;
+        -webkit-text-stroke-color: #897239;
+        animation-name: scroll;
+        animation-duration: 5s;
+        animation-direction: reverse;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+    }
+
+    #scroll-div2::-webkit-scrollbar {
+      display: none;
+    }
+
+    #scroll-div3 {
+      position: absolute;
+      top: 64%;
+      width: 100%;
+      white-space: nowrap;
+      /* saare children ek hi line me */
+      overflow-x: auto;
+      overflow-y: hidden;
+
+      h1 {
+        display: inline-block;
+        font-size: 7rem;
+
+        margin-right: 2rem;
+        letter-spacing: 0.2rem;
+        animation-name: scroll;
+        animation-duration: 5s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+      }
+    }
+
+    #scroll-div3::-webkit-scrollbar {
+      display: none;
+    }
+
+    #text-div {
+      color: antiquewhite;
+      font-family: lavoza;
+      font-weight: 700;
+      font-size: 0.8rem;
+      position: absolute;
+      right: 10%;
+      width: 30%;
+      z-index: 150;
+      top: 15%;
+      text-align: left;
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(calc(-100% - 2rem));
+      }
+    }
+
+    .interactive-image {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      border-radius: 20px;
+      transition: transform 0.1s ease-out;
+    }
+
+    #projects {
+      color: #1C1C1C;
+    }
+
+    #btn {
+      background: #a99252a8;
+      border-radius: 2rem;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #1e293bc0;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 1rem 2rem;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+
+    }
+
+    #btn:hover {
+      background-color: #635530a8;
+      color: white;
+    }
+
+    .hover-bg:hover {
+      background-color: #1e293b;
+      /* Dark blue for hover */
+      color: #ffffff;
+      /* White text on hover */
+    }
+
+    .project-item:hover .project-name {
+      opacity: 1;
+    }
+
+    /* Hide scrollbar but keep scrolling effect */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      /* IE 10+ */
+      scrollbar-width: none;
+      /* Firefox */
+    }
+
+    /* Hide scrollbar but keep scrolling effect */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      /* IE 10+ */
+      scrollbar-width: none;
+      /* Firefox */
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-item:hover .overlay {
+      opacity: 1;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      color: white;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.3s ease;
+      border-radius: 12px;
+      padding: 10px;
+    }
+
+    .overlay h3 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    .social-icon {
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .social-icon:hover {
+      transform: scale(1.2) rotate(10deg);
+    }
+
+    .category {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .category img {
+      transition: transform 0.3s ease;
+    }
+
+    .category:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Hover Text */
+    .category:hover .hover-text {
+      opacity: 1;
+    }
+
+    .hover-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    /* Background overlay */
+    .category::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 5;
+    }
+
+    .category:hover::after {
+      opacity: 1;
+    }
+
+    .category:hover .category-overlay {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="fixed w-full z-10 " id="blurred">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <!-- Logo / Brand -->
+        <div class="flex-shrink-0 flex items-center">
+          <a href="/">
+            <!-- Replace with your logo image -->
+            <img class="h-16 w-auto" src="./Picsart_24-12-18_21-47-41-209.png" alt="Brand Logo" />
+          </a>
+        </div>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex space-x-8 items-center">
+          <a href="#main" class="nav-link">Home</a>
+          <a href="#me" class="nav-link">Me</a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#contact" class="nav-link">Contact</a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
+            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden">
+      <a href="#main" class="block px-4 py-2 text-sm text-white ">Home</a>
+      <a href="#me" class="block px-4 py-2 text-sm text-white ">Me</a>
+      <a href="#projects" class="block px-4 py-2 text-sm text-white ">Projects</a>
+      <a href="#contact" class="block px-4 py-2 text-sm text-white ">Contact</a>
+    </div>
+  </nav>
+
+
+  <div id="main" class="flex flex-col items-center justify-center min-h-screen  p-4">
+    <img src="./Untitled_Artwork (6).png" alt="img" />
+    <!-- <h1 id="text-div">
+            I'm creative content creator and i am going to make some cool stuff for
+            you .
+          </h1> -->
+    <div id="scroll-div" class="max-h-48 w-full md:w-3/4 lg:w-1/2">
+      <h1>MEDHANSHU AKA<span style="font-family: lavoza, serif;"> Ashanti</span> </h1>
+      <h1>MEDHANSHU AKA<span style="font-family: lavoza, serif;"> Ashanti</span> </h1>
+      <h1>MEDHANSHU AKA<span style="font-family: lavoza, serif;"> Ashanti</span> </h1>
+
+    </div>
+    <div id="scroll-div2" class="max-h-48 w-full md:w-3/4 lg:w-1/2">
+      <h1>MEDHANSHU AKA<span style="font-family:lavoza , serif;"> Ashanti</span> </h1>
+      <h1>MEDHANSHU AKA<span style="font-family:lavoza , serif;"> Ashanti</span> </h1>
+      <h1>MEDHANSHU AKA<span style="font-family:lavoza , serif;"> Ashanti</span> </h1>
+
+    </div>
+    <div id="scroll-div3" class="max-h-48 w-full md:w-3/4 lg:w-1/2>
+            <h1>MEDHANSHU AKA<span style=" font-family: lavoza, serif;"> Ashanti</span> </h1>
+      <h1>MEDHANSHU AKA<span style="font-family: lavoza, serif;"> Ashanti</span> </h1>
+      <h1>MEDHANSHU AKA<span style="font-family: lavoza, serif;"> Ashanti</span> </h1>
+    </div>
+
+  </div>
+
+
+  <div class="container mx-auto px-6">
+    <h2 class="text-4xl font-bold mb-6 py-10 text-center"
+      style="font-family:lavoza , serif; font-size: 4rem; font-weight: 300; color: #897239; line-height: 4rem;">some of
+      my best works </h2>
+    <div class="overflow-x-scroll overflow-y-hidden no-scrollbar" id="scroll-container">
+      <div class="flex gap-8 transform scale-110" id="project-container">
+        <!-- Project 1 -->
+        <div class="min-w-[350px] max-w-sm  p-6 ">
+          <img src="./projects/masks and sculptures/img-22.png" alt="Project 1" class="rounded-t-lg" />
+
+        </div>
+        <!-- Project 2 -->
+        <div class="min-w-[350px] max-w-sm  p-6 ">
+          <img src="./projects/masks and sculptures/img-43.jpeg" alt="Project 2" class="rounded-t-lg" />
+
+        </div>
+        <!-- Project 3 -->
+        <div class="min-w-[350px] max-w-sm  p-6 ">
+          <img src="./projects/paintings/img-17.png" alt="Project 3" class="rounded-t-lg" />
+
+        </div>
+        <!-- Project 4 -->
+        <div class="min-w-[350px] max-w-sm  p-6  ">
+          <img src="./projects/posters/img-40.jpeg" alt="Project 4" class="rounded-t-lg" />
+
+        </div>
+        <!-- Project 5 -->
+        <div class="min-w-[350px] max-w-sm  p-6 ">
+          <img src="./projects/posters/img-37.png" alt="Project 5" class="rounded-t-lg" />
+
+        </div>
+        <!-- Duplicate Projects for Infinite Scroll -->
+        <div class="min-w-[350px] max-w-sm  p-6 ">
+          <img src="./projects/sketches/img-44.jpeg" alt="Project 1" class="rounded-t-lg" />
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <hr style="color: #9b8a60b4;">
+
+  <!-- Me Section -->
+  <section class="min-h-screen flex items-center justify-center m-3 " id="me">
+    <div class=" container mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <!-- Image Section -->
+        <div class="flex justify-center">
+          <img src="./Untitled_Artwork (7).png" alt="About Image" class="w-4/6 h-auto max-w-sm md:max-w-full">
+        </div>
+        <!-- Text Section -->
+        <div>
+          <h1 class="text-3xl md:text-4xl mb-4"
+            style="font-family:lavoza , serif; font-size: 4rem; font-style: bold;   font-weight: 300; color: #897239; line-height: 3.7rem;">
+            Hello , <br> I am Medhanshu Bhadoriya </h1>
+          <p class="text-lg leading-relaxed m-3"  style=" font-family: Old Standard TT, serif;">
+            Welcome! I'm passionate about crafting meaningful experiences through web development and design.
+            With a keen eye for detail and a love for creativity, I specialize in creating responsive, user-friendly
+            websites. When I'm not coding, you can find me exploring new technologies or reading about the latest
+            advancements in the tech world.
+          </p>
+          <a href="#projects"><button class="filter-btn py-2 px-4 rounded m-3 " id="btn" >
+            view my work
+          </button></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="page5">
+    <h1>Medhanshu Bhadoriya Medhanshu Bhadoriya Medhanshu Bhadoriya</h1>
+    <h1>Medhanshu Bhadoriya Medhanshu Bhadoriya Medhanshu Bhadoriya</h1>
+    <h1>Medhanshu Bhadoriya Medhanshu Bhadoriya Medhanshu Bhadoriya</h1>
+    <h1>Medhanshu Bhadoriya Medhanshu Bhadoriya Medhanshu Bhadoriya</h1>
+  </div>
+  <section class="p-8" id="projects">
+    <h1 class="text-3xl md:text-4xl mb-4 p-8"
+      style="font-family:lavoza , serif; font-size: 4rem; font-style: bold;   font-weight: 300; color: #897239; line-height: 3.7rem; ">
+      My Projects </h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Category 1 -->
+      <a href="./category1.html">
+        <div class="category cursor-pointer">
+          <img src="./projects/posters/img-20.png" alt="Category 1" class="w-full h-64 object-cover rounded-lg shadow-lg">
+          <div class="hover-text" style="font-family:lavoza , serif;">Graphic designs and posters</div>
+        </div>
+      </a>
+      <!-- Category 2 -->
+      <a href="category2.html">
+        <div class="category cursor-pointer">
+          <img src="./projects/3d/img-6.jpg" alt="Category 2" class="w-full h-64 object-cover rounded-lg shadow-lg">
+          <div class="hover-text" style="font-family:lavoza , serif;">3D-art</div>
+        </div>
+      </a>
+
+
+      <!-- Category 3 -->
+      <a href="category3.html">
+        <div class="category cursor-pointer">
+          <img src="./projects/sketches/img-25.png" alt="Category 3" class="w-full h-64 object-cover rounded-lg shadow-lg">
+          <div class="hover-text" style="font-family:lavoza , serif;">Sketches</div>
+        </div>
+      </a>
+
+      <!-- Category 4 -->
+      <a href="category4.html">
+        <div class="category cursor-pointer">
+          <img src="./projects/paintings/img-38.png" alt="Category 4" class="w-full h-64 object-cover rounded-lg shadow-lg">
+          <div class="hover-text" style="font-family:lavoza , serif;">Paintings </div>
+        </div>
+      </a>
+
+      <a href="category5.html">
+        <div class="category cursor-pointer">
+          <img src="./projects/masks and sculptures/img-43.jpeg" alt="Category 4" class="w-full h-64 object-cover rounded-lg shadow-lg">
+          <div class="hover-text" style="font-family:lavoza , serif;">Sculptures and masks</div>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <br />
+  <div id="page5">
+    <h1>Let's create something together <a href="mailto:aarchiekalsariya2@gmail.com"
+        style="font-family: lavoza; border: 2px solid black ; border-radius: 32px; margin: 1rem; padding-left: 1rem; padding-right: 1rem;">
+        Email me </a> </h1>
+    <h1>Let's create something together <a href="mailto:aarchiekalsariya2@gmail.com"
+        style="font-family: lavoza; border: 2px solid black ; border-radius: 32px; margin: 1rem; padding-left: 1rem; padding-right: 1rem;">
+        Email me </a> </h1>
+    <h1>Let's create something together <a href="mailto:aarchiekalsariya2@gmail.com"
+        style="font-family: lavoza; border: 2px solid black ; border-radius: 32px; margin: 1rem; padding-left: 1rem; padding-right: 1rem;">
+        Email me </a>
+      <h1>
+  </div>
+
+
+  <div class="flex items-center justify-center h-full  bg-opacity-50" id="contact">
+    <div class="w-full max-w-md " style="background-color: #64532a40;">
+      <h2 class="text-4xl font-bold "
+        style="font-family:lavoza , serif; font-size: 4rem; font-weight: 300; color: #2f2f2fab; line-height: 4rem; padding-left: 1rem; padding-top: 3rem;">
+        Got
+        an idea ? Let's work on it ! </h2>
+      <form id="contactForm" class="space-y-4" style="padding: 2rem;">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700 ">Name</label>
+          <input type="text" id="name"
+            class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-lg shadow-sm"
+            placeholder="Your Name" required>
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+          <input type="email" id="email"
+            class=" rounded-lg shadow-sm mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Your Email" required>
+        </div>
+        <div>
+          <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+          <textarea id="message" rows="4"
+            class=" rounded-lg shadow-sm mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit" id="btn"
+          class=" rounded-lg shadow-sm w-full py-2 px-4 bg-indigo-600 text-white font-medium rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- watsapp code  -->
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Get input values
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      // Encode the message for WhatsApp
+      const whatsappMessage = `Hello, Myself ${encodeURIComponent(name)} . My email is ${encodeURIComponent(email)}. ${encodeURIComponent(message)}.`;
+
+      // Replace YOUR_PHONE_NUMBER with your WhatsApp number including country code
+      const whatsappURL = `https://wa.me/9726180505?text=${whatsappMessage}`;
+
+      // Redirect to WhatsApp
+      window.open(whatsappURL, '_blank');
+    });
+  </script>
+
+  <!-- Footer -->
+  <footer class=" py-8" style="background-color: #56472276; margin-top: 2rem;">
+    <div class="max-w-7xl mx-auto text-center">
+      <h2 class="text-2xl font-bold " style="font-family: lavoza; font-size:3rem; color: #2f2f2f; font-weight: 300;"> Let's Connect </h2>
+      <p style="padding: 1rem; font-size:1.3rem;"> Follow me on social media for more updates !</p>
+      <div class="flex justify-center space-x-6">
+        <section class="w-full max-w-4xl  text-center flex justify-center">
+
+          <!-- Social Media Links -->
+          <div class="flex justify-center ">
+            <!-- youtube -->
+            <a href="https://youtube.com/@ashaantti?si=Llv65Q94EwVc46Hs" target="_blank" rel="noopener noreferrer"
+              class="social-icon w-12 h-12 flex justify-center items-center" style="font-size:1.3rem;">
+              <i class="fab fa-youtube -f text-xl"></i>
+            </a>
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/ashaantii.i?igsh=YnZndW5icndjNnR1" target="_blank" rel="noopener noreferrer"
+              class="social-icon w-12 h-12 flex justify-center items-center " style="font-size:1.3rem;">
+              <i class="fab fa-instagram text-xl"></i>
+            </a>
+            <!-- GitHub -->
+            <a href="mailto:mokshbhadoriya@gmail.com" target="_blank" rel="noopener noreferrer"
+              class="social-icon w-12 h-12 flex justify-center items-center" style="font-size:1.3rem;">
+              <i class="fa-regular fa-envelope"></i>
+            </a>
+          </div>
+        </section>
+      </div>
+      <p class="mt-6 ">
+        © 2024-25 ashanti. All rights reserved.
+      </p>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"
+    integrity="sha512-cOH8ndwGgPo+K7pTvMrqYbmI8u8k6Sho3js0gOqVWTmQMlLIi6TbqGWRTpf1ga8ci9H3iPsvDLr4X7xwhC/+DQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    // Mobile menu toggle
+    const menuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+    menuButton.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    // Scroll animations
+    const fadeInElements = document.querySelectorAll(".fade-in");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    });
+    
+
+    fadeInElements.forEach((element) => observer.observe(element));
+
+    const scroll = new LocomotiveScroll({
+      el: document.querySelector("#main"),
+      smooth: true,
+    });
+
+    var tl = gsap.timeline();
+
+    tl.to("#page1", {
+      y: "100vh",
+      scale: 0.6,
+      duration: 0,
+    });
+    tl.to("#page1", {
+      y: "30vh",
+      duration: 1,
+      delay: 1,
+    });
+    tl.to("#page1", {
+      y: "0vh",
+      rotate: 360,
+      scale: 1,
+      duration: 0.7,
+    });
+
+    const image = document.querySelector(".interactive-image");
+    const cursor = document.getElementById("cursor");
+
+    document.addEventListener("mousemove", (e) => {
+      const { clientX, clientY } = e;
+      const { left, top, width, height } = image.getBoundingClientRect();
+
+      // Calculate the offset from the center of the image
+      const xOffset = ((clientX - left) / width - 0.5) * 20; // Scale by 20 degrees max
+      const yOffset = ((clientY - top) / height - 0.5) * 20; // Scale by 20 degrees max
+
+      // Apply transform to the image
+      image.style.transform = `rotateX(${-yOffset}deg) rotateY(${xOffset}deg) scale(1.1)`;
+
+      // Move the custom cursor
+      cursor.style.transform = `translate3d(${clientX - 10}px, ${clientY - 10
+        }px, 0)`;
+    });
+
+    document.addEventListener("mouseleave", () => {
+      image.style.transform = "rotateX(0) rotateY(0) scale(1)";
+    });
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const projectItems = document.querySelectorAll(".project-item");
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const filter = button.getAttribute("data-filter");
+        projectItems.forEach((item) => {
+          if (filter === "all" || item.classList.contains(filter)) {
+            item.classList.remove("hidden");
+          } else {
+            item.classList.add("hidden");
+          }
+        });
+      });
+    });
+
+    function openModal(title, imageUrl) {
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-image').src = imageUrl;
+      document.getElementById('modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    const scrollContainer = document.getElementById('scroll-container');
+    const projectContainer = document.getElementById('project-container');
+
+    // Function to reset scroll to the start when reaching the end
+    scrollContainer.addEventListener('scroll', function () {
+      const scrollWidth = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+      if (scrollContainer.scrollLeft >= scrollWidth) {
+        // When scrolled to the end, reset scroll position to the start
+        scrollContainer.scrollLeft = 0;
+      }
+    });
+
+    // Optional: You can also auto-scroll for a smooth looping effect
+    setInterval(() => {
+      if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+        scrollContainer.scrollLeft = 0;
+      } else {
+        scrollContainer.scrollLeft += 1; // Adjust scroll speed here
+      }
+    }, 10); // Adjust speed of the scroll here (in ms)
+
+  </script>
+</body>
+
+</html>
